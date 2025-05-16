@@ -1,0 +1,35 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    title Liste des étudiants
+    link(rel="stylesheet" href="/assets/css/style.css")
+  body
+    nav
+      a(href="/") Home
+      |  |  
+      a(href="/users") Users
+
+    main
+      h1 Liste des étudiants
+
+      ul
+        each student in students
+          li
+            span.student-info #{student.name} - #{student.birth}
+            div.student-actions
+              a(href=`/edit?name=${student.name}`) Modifier
+              a.delete(href=`/delete?name=${student.name}`) X
+
+      if editStudent
+        h2 Modifier un étudiant
+        form(method="POST" action="/edit")
+          input(type="hidden" name="originalName" value=editStudent.name)
+
+          label(for="name") Nom :
+          input(type="text" name="name" id="name" required value=editStudent.name)
+
+          label(for="birth") Date de naissance :
+          input(type="date" name="birth" id="birth" required value=editStudent.birth)
+
+          button(type="submit") Enregistrer

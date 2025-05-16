@@ -1,0 +1,21 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    title Ajout étudiant
+    link(rel="stylesheet" href="/assets/css/style.css")
+  body
+    nav
+      a(href="/") Home
+      |  |  
+      a(href="/users") Users
+    main
+      h1 Ajouter un étudiant
+      form(action="/add" method="POST")
+        label(for="name") Nom :
+        input#name(type="text" name="name" required)
+        br
+        label(for="birth") Date de naissance :
+        input#birth(type="date" name="birth" required)
+        br
+        button(type="submit") Ajouter
